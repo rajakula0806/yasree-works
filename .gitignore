@@ -1,0 +1,19 @@
+﻿# System
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.pyc
+
+# Logs, env, temp
+*.log
+.env
+*.tmp

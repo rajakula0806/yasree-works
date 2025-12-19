@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>🌿 Yasree – Eco Marketplace</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  .clean-footer{
+  background:#ffffff;
+  color:#1b5e20;
+  padding:1.2rem;
+  text-align:center;
+  font-weight:600;
+  border-top:1px solid #ebebeb;
+}
+
+:root{
+  --forest:#1b5e20; --emerald:#2ecc71; --gold:#facc15;
+  --white:#fff; --charcoal:#1f2937; --gray:#6b7280;
+  --shadow:0 10px 30px rgba(0,0,0,0.08); --gc-border:#dfe6e9;
+  --gc-focus:0 0 0 3px rgba(39,174,96,.18);
+}
+
+/* base reset */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;max-width:100%;overflow-x:hidden}
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#fffef3 0%,#fff7da 40%,#fff5c8 100%);
+  color:var(--charcoal);line-height:1.6;scroll-behavior:smooth;position:relative;
+}
+body::before,body::after{content:"";position:absolute;width:700px;height:700px;border-radius:50%;z-index:-1;filter:blur(140px);opacity:.35}
+body::before{background:radial-gradient(circle at top left,#fff2b3,#fffdf3);top:-220px;left:-200px}
+body::after{background:radial-gradient(circle at bottom right,#fff6c1,#fffbea);bottom:-200px;right:-200px}
+:where(button,input,textarea,select,[tabindex]):focus-visible{outline:none;box-shadow:var(--gc-focus);border-color:var(--forest)}
+
+/* header */
+.site-header{position:sticky;top:0;background:linear-gradient(90deg,#219653,var(--forest));color:#fff;box-shadow:0 2px 5px rgba(0,0,0,.15);z-index:1002}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1rem;max-width:1400px;margin:auto;gap:.6rem;flex-wrap:wrap}
+.logo{font-weight:700;font-size:1.8rem}
+.logo span{color:var(--gold)}
+.search-bar{flex:1 1 420px;min-width:260px;display:flex;background:#fff;border:1px solid var(--gc-border);border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.04)}
+.search-bar input{flex:1;padding:.75rem 1rem;border:0;background:transparent;font-size:1rem}
+.search-btn{background:linear-gradient(90deg,var(--forest),var(--gold));color:#fff;border:0;padding:0 1.2rem;cursor:pointer;font-weight:700;border-radius:8px}
+.nav-mega{background:#fff;border-bottom:1px solid #e8e8e8}
+.nav-mega .container{display:flex;justify-content:center;gap:2rem;padding:.8rem;font-weight:600;flex-wrap:wrap;max-width:1400px;margin:auto}
+.nav-mega a{color:#1f2937;position:relative;padding:.2rem .3rem}
+.nav-mega a::after{content:"";position:absolute;bottom:-6px;left:0;width:0;height:3px;background:var(--forest);transition:.25s;border-radius:999px}
+.nav-mega a:hover::after{width:100%}
+
+/* offer & fab */
+.offer-banner{position:sticky;top:0;z-index:1001;background:linear-gradient(90deg,var(--forest),#1f7a4a);color:#fff;text-align:center;padding:.55rem .5rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:.6rem}
+.offer-banner .close-offer{background:transparent;border:0;color:#fff;font-size:1.1rem;cursor:pointer}
+.fab{position:fixed;right:16px;bottom:18px;z-index:1002;display:flex;align-items:center;gap:.6rem;background:linear-gradient(90deg,var(--forest),var(--gold));color:#fff;padding:.9rem 1rem;border-radius:999px;box-shadow:0 10px 20px rgba(0,0,0,.16);font-weight:700}
+
+/* hero */
+.hero{position:relative;height:320px;overflow:hidden;border-radius:0 0 15px 15px;box-shadow:0 4px 10px rgba(0,0,0,.1)}
+.carousel{display:flex;width:300%;animation:slide 14s infinite}
+.slide{width:33.33%;height:320px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center}
+.slide h2{font-size:2.2rem;text-shadow:2px 2px 6px rgba(0,0,0,.45)}
+.slide p{font-size:1.05rem;opacity:.95}
+@keyframes slide{0%,33.33%{transform:translateX(0)}36.33%,66.66%{transform:translateX(-33.33%)}69.66%,100%{transform:translateX(-66.66%)}}
+.no-min-order{position:absolute;bottom:0;width:100%;background:linear-gradient(90deg,var(--forest),#2b7c3e);color:#fff;text-align:center;padding:.6rem;font-weight:700}
+
+/* layout */
+.main-container{max-width:1400px;margin:2rem auto;padding:0 1rem}
+.fp-title{text-align:center;color:var(--forest);margin:0 0 1.25rem;font-size:1.75rem}
+
+/* grid + cards */
+.filter-bar{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem}
+.sort-select{background:#fff9e9;color:var(--forest);border:1px solid #fde6a8;border-radius:999px;padding:.65rem 1.15rem;min-width:200px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+.product-card{background:linear-gradient(180deg,#ffffff,#fffaf0);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);transition:all .28s;border:1px solid rgba(0,0,0,.03)}
+.product-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.12)}
+.product-img{position:relative;overflow:hidden;background:#fffbea;height:200px;display:flex;align-items:center;justify-content:center}
+.product-img img{width:100%;height:100%;object-fit:cover;display:block;transition:.4s;border-radius:6px}
+.discount-badge{position:absolute;top:10px;left:10px;background:var(--gold);color:#111;padding:6px 8px;border-radius:8px;font-weight:800}
+.product-info{text-align:center;padding:1rem}
+.product-title{color:var(--charcoal);font-weight:700;font-size:1.06rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.7em;margin-bottom:.35rem}
+.product-rating{color:var(--forest);margin:.4rem 0 .2rem}
+.product-price{font-weight:800;color:var(--forest);margin-top:.3rem}
+.original-price{text-decoration:line-through;color:#777;font-size:.9rem;margin-left:6px}
+.eco-badges{margin-top:.6rem;display:flex;justify-content:center;flex-wrap:wrap;gap:.35rem}
+.eco-badges .badge{background:#fff8dc;color:var(--forest);padding:4px 8px;border-radius:999px;font-weight:700;font-size:.8rem;border:1px solid rgba(0,0,0,.03)}
+.btn-row{display:flex;gap:.5rem;margin-top:.85rem}
+.btn-add,.btn-secondary{border-radius:999px;cursor:pointer;font-weight:800;padding:.55rem 0;border:0}
+.btn-add{background:linear-gradient(90deg,var(--forest),var(--gold));color:#fff;flex:1;box-shadow:0 10px 24px rgba(0,0,0,.12)}
+.btn-secondary{background:#fff;border:1px solid #f0e6b0;color:var(--forest);flex:1}
+
+/* sections */
+.section{padding:3rem 1rem;background:linear-gradient(180deg,#fffdf3 0%,#fff8d9 100%);border-radius:14px;box-shadow:var(--shadow);margin:2.2rem 0}
+.section .container{max-width:1320px;margin:auto}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.about-card{background:linear-gradient(180deg,#ffffff,#fff9d9);border-radius:12px;padding:1.25rem;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.about-card h3{color:var(--gold);margin-bottom:.4rem}
+
+/* TESTIMONIALS (kept) */
+.testimonials{padding:2.4rem 1rem;margin:2.2rem 0}
+.testimonials .container{max-width:1100px;margin:auto}
+.testimonials h2{text-align:center;color:var(--forest);margin-bottom:1rem;font-size:1.8rem}
+.testimonials p.lead{text-align:center;color:#475569;max-width:860px;margin:0 auto 1rem}
+
+.carousel-wrap{position:relative;overflow:hidden;border-radius:12px;background:linear-gradient(180deg,#fffbea,#fff9db);box-shadow:var(--shadow);padding:18px}
+.carousel-slides{display:flex;transition:transform .5s ease;gap:12px}
+.carousel-slide{min-width:100%;box-sizing:border-box;padding:12px;display:flex;justify-content:center}
+.t-card{background:linear-gradient(180deg,#ffffff,#fffdf3);border-radius:12px;padding:1.25rem;box-shadow:0 6px 20px rgba(0,0,0,.06);max-width:980px}
+.t-meta{display:flex;align-items:center;gap:.8rem;margin-top:1rem}
+.t-avatar{width:44px;height:44px;border-radius:50%;background:#eafaf0}
+.carousel-controls{display:flex;justify-content:center;gap:.5rem;margin-top:10px}
+.c-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--forest);background:transparent;cursor:pointer}
+.c-dot.active{background:var(--forest)}
+
+/* CONTACT */
+.contact{background:linear-gradient(180deg,#fffdf3 0%,#fff8d9 100%);padding:3rem 1rem;margin-bottom:0}
+.contact h2{text-align:center;font-size:1.8rem;color:var(--forest);margin-bottom:1.2rem}
+.contact-container{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:1100px;margin:0 auto}
+@media(max-width:900px){.contact-container{grid-template-columns:1fr}}
+.contact-info{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.tile{background:linear-gradient(180deg,#ffffff,#fff9d9);border-radius:14px;padding:1rem;border:1px solid rgba(250,204,21,0.06);box-shadow:0 6px 20px rgba(0,0,0,.05)}
+.tile h4{color:var(--forest);margin-bottom:.25rem}
+.contact-form{background:linear-gradient(180deg,#ffffff,#fffbea);border-radius:14px;padding:1.3rem;box-shadow:0 6px 20px rgba(0,0,0,.05)}
+.contact-form input,.contact-form textarea{width:100%;padding:.8rem;border:1px solid #f2e5a4;border-radius:8px;margin-bottom:.8rem;font-family:inherit;background:#fffdf3}
+.contact-form button{background:linear-gradient(90deg,var(--forest),var(--gold));color:#fff;border:0;padding:.9rem;border-radius:999px;font-weight:700;width:100%;cursor:pointer}
+.contact-form button:hover{transform:translateY(-2px);filter:brightness(.98)}
+.map{width:100%;border:none;border-radius:12px;height:300px;margin-top:1rem}
+
+/* MODAL & PRODUCT DETAIL matching screenshot */
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:2000}
+.modal.open{display:flex}
+.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(2px)}
+.modal-card{position:relative;background:linear-gradient(180deg,#fffdf3,#fff8d9);color:#111827;width:min(1180px,98vw);border-radius:20px;box-shadow:0 28px 80px rgba(0,0,0,.35);overflow:visible;padding:18px}
+.modal-close{position:absolute;top:14px;right:14px;background:#fff;border:1px solid #f4e9c0;width:42px;height:42px;border-radius:999px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+
+.pd-head{padding:6px 6px 12px}
+.pd-head h3{margin:0;font-size:1.6rem;color:var(--forest);font-weight:800}
+.pd-body{display:grid;grid-template-columns:560px 1fr;gap:22px;align-items:start;padding:6px}
+@media(max-width:1000px){.pd-body{grid-template-columns:1fr}}
+.pd-gallery{display:flex;flex-direction:column;gap:12px;background:linear-gradient(180deg,#fff,#fff8e8);border-radius:14px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.04);min-height:420px}
+.pd-main{width:100%;height:380px;border-radius:12px;overflow:hidden;background-position:center;background-size:cover;background-repeat:no-repeat;border:1px solid #f3e9c0;background-color:#fffef7;display:flex;align-items:center;justify-content:center;cursor:zoom-in}
+.pd-main img{width:100%;height:100%;object-fit:contain}
+.pd-thumbs{display:flex;gap:10px;align-items:center;justify-content:flex-start;flex-wrap:nowrap;overflow:auto;padding:6px 4px}
+.pd-thumbs img{width:78px;height:78px;object-fit:cover;border-radius:10px;border:2px solid transparent;cursor:pointer;transition:transform .15s ease,box-shadow .15s}
+.pd-thumbs img.active{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 10px 24px rgba(250,204,21,.12)}
+
+.pd-info{background:linear-gradient(180deg,#fff,#fffdf3);border-radius:14px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.04);display:flex;flex-direction:column}
+.pd-info .price{font-size:1.9rem;color:var(--forest);font-weight:900;margin:6px 0 0}
+.pd-info small.vat{color:var(--gray);display:block;margin-top:6px}
+.pd-info label{display:block;margin-top:12px;font-weight:700;color:var(--forest)}
+.pd-info select,.pd-info input[type="number"]{width:100%;padding:.8rem;border-radius:10px;border:1px solid #e9e3bf;background:#fffef7;margin-top:6px}
+
+.pd-qty-wrap{display:flex;align-items:center;gap:.8rem;margin-top:8px}
+.qty-circle{width:38px;height:38px;border-radius:50%;border:0;background:#fff8d8;color:var(--forest);font-weight:800;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,.04)}
+.qty-input{width:84px;height:42px;border-radius:8px;border:1px solid #e6dfbf;text-align:center}
+
+.pd-add{margin-top:14px;height:54px;border-radius:999px;border:0;cursor:pointer;background:linear-gradient(90deg,var(--forest),var(--gold));color:#fff;font-weight:900;font-size:1.02rem;display:flex;align-items:center;justify-content:center;gap:.6rem;box-shadow:0 16px 30px rgba(33,122,55,.12)}
+.pd-actions-row{display:flex;gap:.6rem;margin-top:10px}
+
+.product-highlights{margin-top:18px;background:linear-gradient(180deg,#fffdf3,#fff8d9);border-radius:12px;padding:16px;box-shadow:0 10px 28px rgba(0,0,0,.04)}
+.product-highlights h4{text-align:center;color:var(--forest);margin:6px 0 12px;font-size:1.15rem}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.feature-card{background:#fff;border-radius:10px;padding:12px;display:flex;gap:.75rem;align-items:flex-start;border-left:4px solid var(--gold);box-shadow:0 6px 18px rgba(0,0,0,.04)}
+.feature-card strong{color:var(--forest);font-weight:800;display:block}
+.feature-card p{margin:2px 0 0;color:#333;font-size:.95rem}
+
+/* footer & toast */
+footer{background:linear-gradient(90deg,var(--forest),var(--gold));color:#fff;text-align:center;padding:1.2rem;margin-top:2.5rem;font-weight:700;box-shadow:0 -2px 12px rgba(0,0,0,0.08)}
+footer span{color:#fff5b5}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:linear-gradient(90deg,var(--forest),var(--gold));color:#fff;padding:.8rem 1.25rem;border-radius:999px;box-shadow:0 10px 24px rgba(0,0,0,.25);font-weight:800;display:none;z-index:3000}
+
+/* responsiveness */
+@media(max-width:900px){.search-bar{order:3;width:100%;margin-top:.5rem}.header-icons{order:2}.header-top{gap:.35rem}.carousel-slide .t-card{padding:.9rem}}
+</style>
+</head>
+<body>
+
+
+<header class="site-header">
+  <div class="header-top">
+    <div class="logo">Yasree<span>Works</span></div>
+    <div class="search-bar">
+      <input id="search" placeholder="Search eco products..." />
+      <button id="searchBtn" class="search-btn">Search</button>
+    </div>
+    <div class="header-icons">
+      <div class="icon-btn">♡ Wishlist <span class="badge">0</span></div>
+      <div class="icon-btn">🛒 Cart <span class="badge">0</span></div>
+    </div>
+  </div>
+
+  <nav class="nav-mega">
+    <div class="container">
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="offer-banner" id="offerBanner">
+    <span>🎉 Diwali Offer: Free shipping over £25 + 10% off code <strong>GREEN10</strong></span>
+    <button class="close-offer" id="closeOffer" aria-label="Close">✕</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="carousel">
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1506905925346-500d26d82f7f?w=1400');">
+      <div><h2>🌱 Sustainable Supplies</h2><p>Eco-friendly choices for every business</p></div>
+    </div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400');">
+      <div><h2>☕ Compostable Ripple Cups</h2><p>100% Biodegradable • Safe for Earth</p></div>
+    </div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1400');">
+      <div><h2>🌿 Plastic-Free Alternatives</h2><p>Eco innovation for everyday life</p></div>
+    </div>
+  </div>
+  <div class="no-min-order">♻ No Minimum Order • Carbon-Neutral Shipping</div>
+</section>
+
+<main id="products" class="main-container">
+  <h2 class="fp-title">Feature Products</h2>
+  <div class="filter-bar">
+    <select id="sortSelect" class="sort-select" aria-label="Sort products">
+      <option value="">Sort</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="price-desc">Price: High to Low</option>
+      <option value="rating-desc">Rating</option>
+      <option value="discount-desc">Discount</option>
+    </select>
+  </div>
+
+  <div class="grid" id="productGrid"></div>
+
+  <section class="section about-us" id="about">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:1rem;">
+        <h2 style="color:var(--forest);margin-bottom:.5rem;">About Us</h2>
+        <p style="color:#434343;max-width:850px;margin:0 auto 1rem;">
+          We are <strong>Yasree Works and Trades Limited</strong>, a UK-based packaging manufacturing and trading company dedicated to quality, innovation and sustainability. All our products are proudly made in our own factory in England.
+        </p>
+      </div>
+      <div class="about-grid">
+        <article class="about-card"><h3>Our Roots</h3><p>Yasree Works began to provide reliable and eco-conscious packaging solutions made in the UK.</p></article>
+        <article class="about-card"><h3>Our Purpose</h3><p>We help businesses stand out with sustainable, customizable and logo-printed packaging.</p></article>
+        <article class="about-card"><h3>Our Values</h3><p>Transparency, innovation and sustainability guide everything we do.</p></article>
+        <article class="about-card"><h3>Our Commitment</h3><p>Premium materials and dependable supply to help businesses meet sustainability goals.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- modal -->
+  <div class="modal" id="productModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="pdTitle">
+      <button class="modal-close" data-close aria-label="Close">✕</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+</main>
+
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <h2>Customer Love</h2>
+    <p class="lead">Real voices from the community that shop and trust Yasree Works for eco packaging and supplies.</p>
+    <div class="carousel-wrap" id="testiCarousel">
+      <div class="carousel-slides" id="carouselSlides"></div>
+    </div>
+    <div class="carousel-controls" id="carouselControls"></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Contact Us</h2>
+  <div class="contact-container">
+    <div>
+      <div class="contact-info">
+        <div class="tile"><h4>Business Hours</h4><p>Mon–Fri: 9:00–18:00<br>Sat: 10:00–16:00</p></div>
+        <div class="tile"><h4>Address</h4><p>Unit 26, The Maltings Industrial Estate, Essex, CM8 2FE, England</p></div>
+        <div class="tile"><h4>Email</h4><p><a href="mailto:support@yasreeworks.co.uk" style="color:var(--forest)">support@yasreeworks.co.uk</a></p></div>
+        <div class="tile"><h4>Phone</h4><p><a href="tel:+441234567890" style="color:var(--forest)">+44 1234 567890</a></p></div>
+      </div>
+
+      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2464.333926739859!2d0.5015378760216377!3d51.73138689691922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d91aa3d3e42317%3A0x8735c6eae1afcd1a!2sThe%20Maltings%20Industrial%20Estate%2C%20Station%20Rd%2C%20Witham%20CM8%202FE%2C%20UK!5e0!3m2!1sen!2sin!4v1731400000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <form class="contact-form" id="contactForm">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem">
+        <div><label>Name *</label><input name="name" required></div>
+        <div><label>Email *</label><input type="email" name="email" required></div>
+      </div>
+      <label style="margin-top:.6rem">Subject *</label>
+      <input name="subject" required>
+      <label>Message *</label>
+      <textarea name="message" rows="4" required></textarea>
+      <div style="display:flex;gap:.6rem;align-items:center;margin-top:.6rem"><input type="checkbox" required style="width:18px;height:18px"><span>I agree to the terms &amp; privacy policy</span></div>
+      <button type="submit" style="margin-top:.8rem">Send Message</button>
+      <p id="formStatus" style="display:none;margin-top:.5rem"></p>
+    </form>
+  </div>
+</section>
+
+<footer class="clean-footer">
+  © 2025 Yasree Works and Trades Limited — All Rights Reserved.<br>
+  Designed & Developed by <strong>Raj Crafts ❤️</strong>
+</footer>
+
+<div id="toast" class="toast" aria-live="polite">Added</div>
+<button class="fab" id="openCallback">💬 Chat</button>
+
+<script>
+
+const products = [
+  {
+    id: 201,
+    title: "12oz Black Ripple Paper Cups (500) Hot Drink Disposable Coffee Cups",
+    price: 27.99,
+    originalPrice: null,
+    image: "images/12oz-Black-Ripple-Paper-Cups-500.jpg",
+    images: [
+      "images/12oz-Black-Ripple-Paper-Cups-500.jpg",
+      "images/12oz-Black-Ripple-Paper-Cups-500.jpg",
+      "images/12oz-Black-Ripple-Paper-Cups-500.jpg"
+    ],
+    eco: ["recyclable", "heat-safe"],
+    rating: 4.8,
+    category: "paper-cups",
+    variants: {
+      Size: ["12oz (black)"],
+      Units: ["pack of 500pcs in box"]
+    },
+    pricing: {
+      "12oz (black)|pack of 500pcs in box": 27.99
+    },
+    details:
+      "12-oz Black Kraft Triple Wall Hot Drink Paper Cups (354ml) with triple-wall ripple design for superior insulation and no need for sleeves. Made from high-quality eco-friendly kraft paper with excellent heat retention and hand protection.",
+    features: [
+      "Triple-wall ripple insulation",
+      "Food-grade certified and recyclable",
+      "Durable, stylish black finish",
+      "Designed for 12oz domed takeaway sip lids"
+    ],
+    highlight_product:
+      "12-oz Black Kraft Triple Wall Hot Drink Paper Cups (354ml)",
+    highlight_design:
+      "Triple-wall ripple design for superior insulation and no need for sleeves",
+    highlight_material:
+      "High-quality eco-friendly kraft paper from sustainable wood pulp",
+    highlight_features:
+      "Excellent heat retention, hand protection, food-grade certified, recyclable",
+    highlight_use:
+      "Ideal for cafes, events, and takeaway businesses serving hot drinks",
+    highlight_packaging: "Box of 500 cups",
+    highlight_delivery: "Next-day delivery available across the UK",
+    highlight_ecobenefit:
+      "Sustainable, cost-effective, and environmentally responsible hot drink solution"
+  },
+  {
+    id: 202,
+    title: "8oz Black Ripple Paper Cups (500) Hot Drink Disposable Coffee Cups",
+    price: 25.99,
+    originalPrice: null,
+    image: "images/8oz-Black-Ripple-Paper-Cups-500.png",
+    images: [
+      "images/8oz-Black-Ripple-Paper-Cups-500.png",
+      "images/8oz-Black-Ripple-Paper-Cups-500.png",
+      "images/8oz-Black-Ripple-Paper-Cups-500.png"
+    ],
+    eco: ["recyclable", "heat-safe"],
+    rating: 4.7,
+    category: "paper-cups",
+    variants: {
+      Size: ["8oz (black)"],
+      Units: ["pack of 500pcs in box"]
+    },
+    pricing: {
+      "8oz (black)|pack of 500pcs in box": 25.99
+    },
+    details:
+      "8-oz Black Kraft Triple Wall Hot Drink Paper Cups (236ml) with ripple design for superior insulation and no need for sleeves.",
+    features: [
+      "Excellent heat retention and hand protection",
+      "Food-grade certified and recyclable",
+      "Durable black ripple finish",
+      "Designed for 8oz domed takeaway sip lids"
+    ],
+    highlight_product:
+      "8-oz Black Kraft Triple Wall Hot Drink Paper Cups (236ml)",
+    highlight_design:
+      "Triple-wall ripple insulation for comfortable grip and heat protection",
+    highlight_material:
+      "High-quality eco-friendly kraft paper from sustainable pulp",
+    highlight_features:
+      "Excellent heat retention, hand protection, recyclable finish",
+    highlight_use:
+      "Ideal for espresso, flat white, cappuccino and other small hot drinks",
+    highlight_packaging: "Box of 500 cups",
+    highlight_delivery: "Next-day delivery available across the UK",
+    highlight_ecobenefit:
+      "Sustainable, cost-effective and eco-responsible choice for hot drinks"
+  },
+  {
+    id: 203,
+    title:
+      "4oz Ripple Paper Cups (1000) Espresso Hot Drink Disposable Coffee Cups",
+    price: 32.99,
+    originalPrice: null,
+    image: "images/4oz-Ripple-Paper-Cups-1000.jpg",
+    images: [
+      "images/4oz-Ripple-Paper-Cups-1000.jpg",
+      "images/4oz-Ripple-Paper-Cups-1000.jpg",
+      "images/4oz-Ripple-Paper-Cups-1000.jpg"
+    ],
+    eco: ["recyclable", "food-safe"],
+    rating: 4.6,
+    category: "paper-cups",
+    variants: {
+      Size: ["4oz (premium)"],
+      Units: ["pack of 1000pcs in box"]
+    },
+    pricing: {
+      "4oz (premium)|pack of 1000pcs in box": 32.99
+    },
+    details:
+      "4-oz Premium Triple Wall Hot Drink Paper Cups (118ml) with triple-wall insulation for maximum heat retention and no need for sleeves.",
+    features: [
+      "Superior insulation keeps drinks hot and hands cool",
+      "Food-grade certified and fully recyclable",
+      "Durable, professional finish",
+      "Designed to fit 4oz domed takeaway sip lids"
+    ],
+    highlight_product:
+      "4-oz Premium Triple Wall Hot Drink Paper Cups (118ml)",
+    highlight_design:
+      "Triple-wall premium insulation for small espresso-style servings",
+    highlight_material:
+      "High-quality eco-friendly paper from sustainable materials",
+    highlight_features:
+      "Superior insulation, recyclable, stylish professional look",
+    highlight_use:
+      "Perfect for espresso, macchiato, short coffee servings and samples",
+    highlight_packaging: "Box of 1000 cups for convenience and value",
+    highlight_delivery: "Standard and express UK shipping options",
+    highlight_ecobenefit:
+      "Sustainable, compostable and cost-effective choice for eco-conscious businesses"
+  },
+  {
+    id: 204,
+    title:
+      "12oz Premium Ripple Paper Cups (500) Hot Drink Disposable Coffee Cups",
+    price: 29.99,
+    originalPrice: null,
+    image: "images/12oz-Premium-Ripple-Paper-Cups-500.jpg",
+    images: [
+      "images/12oz-Premium-Ripple-Paper-Cups-500.jpg",
+      "images/12oz-Premium-Ripple-Paper-Cups-500.jpg",
+      "images/12oz-Premium-Ripple-Paper-Cups-500.jpg"
+    ],
+    eco: ["compostable", "biodegradable"],
+    rating: 4.8,
+    category: "paper-cups",
+    variants: {
+      Size: ["12oz (premium)"],
+      Units: ["pack of 500pcs in box"]
+    },
+    pricing: {
+      "12oz (premium)|pack of 500pcs in box": 29.99
+    },
+    details:
+      "12-oz Chequer Design Triple Wall Ripple Paper Cups (box of 500) made from 100% compostable, plant-based sustainable materials.",
+    features: [
+      "Triple-wall ripple insulation",
+      "Chequer premium design",
+      "Fully biodegradable and compostable"
+    ],
+    highlight_product:
+      "12-oz Chequer Design Triple Wall Ripple Paper Cups (Box of 500)",
+    highlight_design:
+      "Triple-wall ripple insulation with stylish chequer design",
+    highlight_material:
+      "100% compostable, plant-based sustainable materials",
+    highlight_features:
+      "Premium durable finish, suitable for hot or cold drinks",
+    highlight_use:
+      "Ideal for catering, cafes, events and takeaway services",
+    highlight_packaging: "Bulk saver pack of 500 cups",
+    highlight_delivery: "Next-day delivery available across the UK",
+    highlight_ecobenefit:
+      "Combines luxury presentation with strong environmental responsibility"
+  },
+  {
+    id: 205,
+    title:
+      "8oz Premium Ripple Paper Cups (500) Hot Drink Disposable Coffee Cups",
+    price: 27.99,
+    originalPrice: null,
+    image: "images/8oz-Premium-Ripple-Paper-Cups-500.jpg", 
+    images: [
+      "images/8oz-Premium-Ripple-Paper-Cups-500.jpg",
+      "images/8oz-Premium-Ripple-Paper-Cups-500.jpg",
+      "images/8oz-Premium-Ripple-Paper-Cups-500.jpg"
+    ],
+    eco: ["compostable", "biodegradable"],
+    rating: 4.7,
+    category: "paper-cups",
+    variants: {
+      Size: ["8oz (premium)"],
+      Units: ["pack of 500pcs in box"]
+    },
+    pricing: {
+      "8oz (premium)|pack of 500pcs in box": 27.99
+    },
+    details:
+      "8-oz Chequer Design Triple Wall Ripple Paper Cups (box of 500) with compostable, plant-based material and premium chequer pattern.",
+    features: [
+      "Triple-wall ripple insulation",
+      "Chequer visual design",
+      "Fully compostable and biodegradable"
+    ],
+    highlight_product:
+      "8-oz Chequer Design Triple Wall Ripple Paper Cups (Box of 500)",
+    highlight_design:
+      "Stylish chequer pattern with ripple insulation for comfort",
+    highlight_material:
+      "100% compostable plant-based sustainable material",
+    highlight_features:
+      "Stylish, compostable and heat-safe for hot or cold drinks",
+    highlight_use: "Perfect for cafes, catering, events and retail outlets",
+    highlight_packaging: "Bulk saver pack of 500 cups",
+    highlight_delivery: "Next-day UK delivery available",
+    highlight_ecobenefit: "Plastic-free, fully compostable cup solution"
+  },
+  {
+    id: 206,
+    title: "4oz, 8oz, and 12oz Black Plastic Lids (1000)",
+    price: 23.99, // lowest price shown on cards
+    originalPrice: null,
+    image: "images/4oz-8oz-and-12oz-Black-Plastic-Lids-1000.jpg",
+    images: [
+      "images/4oz-8oz-and-12oz-Black-Plastic-Lids-1000.jpg",
+      "images/4oz-8oz-and-12oz-Black-Plastic-Lids-1000.jpg",
+      "images/4oz-8oz-and-12oz-Black-Plastic-Lids-1000.jpg"
+    ],
+    eco: ["recyclable"],
+    rating: 4.5,
+    category: "lids",
+    variants: {
+      Size: ["4oz", "8oz", "12oz"],
+      Units: ["pack of 1000pcs in box"]
+    },
+    pricing: {
+      "4oz|pack of 1000pcs in box": 23.99,
+      "8oz|pack of 1000pcs in box": 24.99,
+      "12oz|pack of 1000pcs in box": 26.99
+    },
+    details:
+      "Black Plastic Sip Through Lids for 4oz, 8oz and 12oz paper cups (pack of 1000). Domed, snug-fit lids with sip-through opening.",
+    features: [
+      "Sip-through hole for on-the-go drinking",
+      "Leak-resistant, reclosable design",
+      "Domed snug fit for single, ripple and double wall cups"
+    ],
+    highlight_product:
+      "Black Plastic Sip Through Lids for 4oz, 8oz and 12oz cups",
+    highlight_design:
+      "Domed sip-through leak-resistant lid with reclosable feature",
+    highlight_material:
+      "Durable, high-quality polystyrene for secure performance",
+    highlight_features:
+      "Prevents spills, retains heat and keeps drinks warmer for longer",
+    highlight_use:
+      "Perfect for cafes, coffee shops, catering and takeaway services",
+    highlight_packaging: "Bulk pack of 1000 lids for efficiency and value",
+    highlight_delivery:
+      "Reliable UK dispatch with convenient bulk handling for trade",
+    highlight_ecobenefit:
+      "Disposable yet recyclable (where facilities exist), supporting sustainable takeaways"
+  },
+  {
+    id: 207,
+    title: "No 2 Aluminium Foil Food Containers (1000)",
+    price: 34.9,
+    originalPrice: null,
+    image: "images/No-2-Aluminium-Foil-Food-Containers-1000.jpg",
+    images: [
+      "images/No-2-Aluminium-Foil-Food-Containers-1000.jpg",
+      "images/No-2-Aluminium-Foil-Food-Containers-1000.jpg",
+      "images/No-2-Aluminium-Foil-Food-Containers-1000.jpg"
+    ],
+
+    eco: ["recyclable", "oven-safe"],
+    category: "foil-containers",
+    variants: {
+      Size: ["No 2 / 250ML"],
+      Units: ["pack of 1000pcs in box"]
+    },
+    pricing: {
+      "No 2 / 250ML|pack of 1000pcs in box": 34.9
+    },
+    details:
+      "No 2 aluminium foil food containers (approx. 250ml) suitable for hot or cold food storage and takeaway.",
+    features: [
+      "Rigid aluminium foil construction",
+      "Suitable for oven re-heating",
+      "Stackable and space-saving"
+    ],
+    highlight_product: "No 2 Aluminium Foil Food Containers (1000 pack)",
+    highlight_design:
+      "Classic takeaway foil tray design for secure food transport",
+    highlight_material: "Food-grade aluminium foil, recyclable where accepted",
+    highlight_features:
+      "Heat-resistant, rigid structure, ideal for portion control",
+    highlight_use:
+      "Perfect for curries, rice dishes, small portions and side orders",
+    highlight_packaging: "Pack of 1000 containers in bulk box",
+    highlight_delivery: "Fast UK delivery for catering and takeaway operators",
+    highlight_ecobenefit:
+      "Recyclable foil helps reduce plastic usage in food packaging"
+  },
+  {
+    id: 208,
+    title: "No 6a Aluminium Foil Food Containers (500)",
+    price: 26.9,
+    originalPrice: null,
+    image: "images/No-6a-Aluminium-Foil-Food-Containers-500.jpg",
+    images: [
+      "images/No-6a-Aluminium-Foil-Food-Containers-500.jpg",
+      "images/No-6a-Aluminium-Foil-Food-Containers-500.jpg",
+      "images/No-6a-Aluminium-Foil-Food-Containers-500.jpg"
+    ],
+
+    eco: ["recyclable", "oven-safe"],
+    category: "foil-containers",
+    variants: {
+      Size: ["NO6A / 660ML"],
+      Units: ["Pack of 500 pcs in box"]
+    },
+    pricing: {
+      "NO6A / 660ML|Pack of 500 pcs in box": 26.9
+    },
+    details:
+      "No 6a aluminium foil food containers (approx. 660ml) ideal for main course portions.",
+    features: [
+      "Generous capacity for mains",
+      "Oven-safe and heat-conductive",
+      "Compatible with standard foil lids (not included by default)"
+    ],
+    highlight_product: "No 6a Aluminium Foil Food Containers (500 pack)",
+    highlight_design:
+      "Deep foil container design for hearty takeaway portions",
+    highlight_material:
+      "Food-grade recyclable aluminium foil for hot or cold foods",
+    highlight_features:
+      "Oven-safe, sturdy walls, great for curries, pasta and rice dishes",
+    highlight_use:
+      "Designed for restaurants, takeaways and event catering services",
+    highlight_packaging: "Pack of 500 containers in trade outer",
+    highlight_delivery: "Reliable UK-wide delivery to foodservice customers",
+    highlight_ecobenefit:
+      "Aluminium containers are widely recyclable versus plastic trays"
+  },
+  {
+    id: 209,
+    title: "No 9 Aluminium Foil Food Containers (200)",
+    price: 30.9,
+    originalPrice: null,
+    image: "images/No-9-Aluminium-Foil-Food-Containers-200.jpg",
+    images: [
+      "images/No-9-Aluminium-Foil-Food-Containers-200.jpg",
+      "images/No-9-Aluminium-Foil-Food-Containers-200.jpg",
+      "images/No-9-Aluminium-Foil-Food-Containers-200.jpg"
+    ],
+
+    eco: ["recyclable", "oven-safe"],
+    category: "foil-containers",
+    variants: {
+      Size: ["NO 9 / 9\"x9\""],
+      Units: ["Pack of 200 pcs in box"]
+    },
+    pricing: {
+      "NO 9 / 9\"x9\"|Pack of 200 pcs in box": 30.9
+    },
+    details:
+      "No 9 aluminium foil food containers (approx. 9\" x 9\") ideal for larger portions, combo meals or platters.",
+    features: [
+      "Large surface area for mains and sides",
+      "Rigorous foil gauge for strength",
+      "Suitable for oven re-heating"
+    ],
+    highlight_product: "No 9 Aluminium Foil Food Containers (200 pack)",
+    highlight_design:
+      "Wide-format foil tray for sharing portions or full meals",
+    highlight_material:
+      "Strong, recyclable aluminium foil suitable for oven use",
+    highlight_features:
+      "Good rigidity, heat conduction and portion control capability",
+    highlight_use:
+      "Ideal for grilled dishes, mixed platters and baked items",
+    highlight_packaging: "Pack of 200 containers for professional kitchens",
+    highlight_delivery:
+      "Fast UK delivery to restaurants, takeaways and caterers",
+    highlight_ecobenefit:
+      "Helps replace plastic or foam containers with recyclable foil"
+  },
+  {
+    id: 210,
+    title: "Bagasse 6\" x 6\" Burger Boxes (500)",
+    price: 0, // TODO: update with real price
+    originalPrice: null,
+    image: "images/Bagasse-6x6-Burger-Boxes-500.jpg",
+    images: [
+      "images/Bagasse-6x6-Burger-Boxes-500.jpg",
+      "images/Bagasse-6x6-Burger-Boxes-500.jpg",
+      "images/Bagasse-6x6-Burger-Boxes-500.jpg"
+    ],
+    eco: ["compostable", "plastic-free"],
+    category: "bagasse-boxes",
+    variants: {
+      Size: ["6\" x 6\""],
+      Units: ["Pack of 500 pcs in box"]
+    },
+    pricing: {
+      "6\" x 6\"|Pack of 500 pcs in box": 26.99
+    },
+    details:
+      "6\" x 6\" bagasse burger boxes made from moulded sugarcane fibre — strong, compostable alternative to plastic or foam.",
+    features: [
+      "Clamshell design for burgers and sides",
+      "Sturdy structure, grease and cut resistant",
+      "Suitable for hot or cold foods"
+    ],
+    highlight_product: "6\" x 6\" Bagasse Burger Boxes (500 pack)",
+    highlight_design:
+      "Clamshell hinged-lid design ideal for burgers and snacks",
+    highlight_material:
+      "Bagasse (sugarcane fibre) — renewable, compostable and plastic-free",
+    highlight_features:
+      "Sturdy, grease-resistant, suitable for hot and cold applications",
+    highlight_use:
+      "Perfect for burger outlets, street food and quick service restaurants",
+    highlight_packaging: "Pack of 500 boxes in trade carton",
+    highlight_delivery: "Fast UK delivery for foodservice and catering",
+    highlight_ecobenefit:
+      "Compostable, plant-based alternative to polystyrene or plastic boxes"
+  },
+  {
+    id: 211,
+    title: "Bagasse 7\" x 5\" Clamshell Takeaway Box (250)",
+    price: 0, // TODO: update with real price
+    originalPrice: null,
+    image: "images/Bagasse-7x5-Clamshell-Takeaway-Box-250.jpg",
+    images: [
+      "images/Bagasse-7x5-Clamshell-Takeaway-Box-250.jpg",
+      "images/Bagasse-7x5-Clamshell-Takeaway-Box-250.jpg",
+      "images/Bagasse-7x5-Clamshell-Takeaway-Box-250.jpg"
+    ],
+    eco: ["compostable", "plastic-free"],
+    category: "bagasse-boxes",
+    variants: {
+      Size: ["7\" x 5\""],
+      Units: ["Pack of 250 pcs in box"]
+    },
+    pricing: {
+      "7\" x 5\"|Pack of 250 pcs in box": 27.99
+    },
+    details:
+      "7\" x 5\" bagasse clamshell takeaway boxes ideal for sides, small meals and snacks.",
+    features: [
+      "Compact clamshell design",
+      "Rigid, stackable and easy to close",
+      "Microwave-safe for re-heating"
+    ],
+    highlight_product: "7\" x 5\" Bagasse Clamshell Takeaway Boxes (250 pack)",
+    highlight_design:
+      "Smaller clamshell footprint ideal for sides and smaller portions",
+    highlight_material:
+      "Compostable bagasse from sugarcane by-product, completely plastic-free",
+    highlight_features:
+      "Grease-resistant, sturdy and microwave-safe for reheating",
+    highlight_use:
+      "Suitable for fries, sides, desserts or light meal combos",
+    highlight_packaging: "Pack of 250 boxes",
+    highlight_delivery: "Convenient delivery for cafes and takeaways",
+    highlight_ecobenefit:
+      "Supports plastic reduction targets with compostable fibre packaging"
+  },
+  {
+    id: 212,
+    title: "Bagasse 9\" x 6\" Compartment Takeaway Box (250)",
+    price: 0, // TODO: update with real price
+    originalPrice: null,
+    image: "images/Bagasse-9x6-Compartment-Takeaway-Box-250.jpg",
+    images: [
+      "images/Bagasse-9x6-Compartment-Takeaway-Box-250.jpg",
+      "images/Bagasse-9x6-Compartment-Takeaway-Box-250.jpg",
+      "images/Bagasse-9x6-Compartment-Takeaway-Box-250.jpg"
+    ],
+    eco: ["compostable", "plastic-free"],
+    category: "bagasse-boxes",
+    variants: {
+      Size: ["9\" x 6\""],
+      Units: ["Pack of 250 pcs in box"]
+    },
+    pricing: {
+      "9\" x 6\"|Pack of 250 pcs in box": 29.99
+    },
+    details:
+      "9\" x 6\" bagasse compartment takeaway boxes with separated sections for mains and sides.",
+    features: [
+      "Multi-compartment interior to separate foods",
+      "Strong hinges and locking tabs",
+      "Suitable for hot combination meals"
+    ],
+    highlight_product:
+      "9\" x 6\" Bagasse Compartment Takeaway Boxes (250 pack)",
+    highlight_design:
+      "Compartment design keeps mains and sides separated during delivery",
+    highlight_material:
+      "Compostable bagasse fibre, renewable and plastic-free",
+    highlight_features:
+      "Heat-resistant, sturdy and grease-resistant for saucy dishes",
+    highlight_use:
+      "Ideal for combo meals, rice with curry, mains plus salad or sides",
+    highlight_packaging: "Pack of 250 boxes for catering and takeaway use",
+    highlight_delivery: "Fast UK delivery direct to foodservice premises",
+    highlight_ecobenefit:
+      "Helps replace polystyrene compartment boxes with compostable fibre options"
+  }
+];
+
+/* ---------- utilities + rendering ---------- */
+const grid = document.getElementById('productGrid');
+function formatMoney(v){ return `£${(Number(v)||0).toFixed(2)}`; }
+
+function extractAllPrices(p){
+  const out=[];
+  if(p.pricing && typeof p.pricing==='object') out.push(...Object.values(p.pricing).map(Number));
+  if(p.pricingMatrix && typeof p.pricingMatrix==='object'){
+    for(const k1 in p.pricingMatrix){
+      const lvl2 = p.pricingMatrix[k1];
+      for(const k2 in lvl2){
+        const lvl3 = lvl2[k2];
+        for(const k3 in lvl3) out.push(Number(lvl3[k3]));
+      }
+    }
+  }
+  if(p.price) out.push(Number(p.price));
+  return out.filter(v=>!isNaN(v));
+}
+function getCardPrice(p){
+  if(p.pricing || p.pricingMatrix){
+    const all = extractAllPrices(p);
+    if(all.length) return Math.min(...all);
+  }
+  return p.price ?? 0;
+}
+
+function productCard(p){
+  const fromPrice = getCardPrice(p);
+  const sold = p.soldOut ? `<span class="badge" style="background:#fee2e2;color:#b91c1c">Sold out</span>` : '';
+  return `
+    <div class="product-card" data-id="${p.id}">
+      <div class="product-img">
+        <img loading="lazy" src="${p.image}" alt="${p.title}">
+      </div>
+      <div class="product-info">
+        <div class="product-title">${p.title}</div>
+        <div class="product-rating">⭐ <span>${p.rating ?? '—'}</span></div>
+        <div class="product-price">${formatMoney(fromPrice)} ${p.originalPrice?`<span class="original-price">${formatMoney(p.originalPrice)}</span>`:''} ${sold}</div>
+        <div class="eco-badges">${(p.eco||[]).map(e=>`<span class="badge">${e}</span>`).join('')}</div>
+        <div class="btn-row" style="margin-top:.9rem">
+          <button class="btn-add" data-id="${p.id}">Add</button>
+          <button class="btn-secondary btn-more" data-id="${p.id}">More Details</button>
+        </div>
+      </div>
+    </div>`;
+}
+function render(list){ grid.innerHTML = list.map(productCard).join(''); }
+render(products);
+
+/* ---------- search & sort ---------- */
+let currentSearch='', currentSort='';
+function applyFilters(){
+  let list = products.slice();
+  if(currentSearch){ const q = currentSearch.toLowerCase(); list = list.filter(p=>p.title.toLowerCase().includes(q)); }
+  if(currentSort){
+    const [key,dir] = currentSort.split('-');
+    list.sort((a,b)=>{
+      const av = key==='price'? getCardPrice(a) : key==='rating'? (a.rating||0) : key==='discount'? (a.discount||0) : 0;
+      const bv = key==='price'? getCardPrice(b) : key==='rating'? (b.rating||0) : key==='discount'? (b.discount||0) : 0;
+      return dir==='asc' ? av-bv : bv-av;
+    });
+  }
+  render(list);
+}
+document.getElementById('sortSelect')?.addEventListener('change', e=>{ currentSort = e.target.value; applyFilters(); });
+document.getElementById('search')?.addEventListener('input', e=>{ currentSearch = e.target.value.trim(); applyFilters(); });
+
+/* ---------- product modal with mapped highlights ---------- */
+const modal = document.getElementById('productModal');
+const modalBody = document.getElementById('modalBody');
+let lastTrigger = null;
+
+function buildVariantControls(p){
+  if(!p.variants && !p.pricingMatrix) return '';
+  const nice = k => (k.toLowerCase()==='units') ? 'Select units' : k;
+  const parts = [];
+  if(p.variants){
+    for(const [group, options] of Object.entries(p.variants)){
+      parts.push(`<label>${nice(group)}</label><select class="gc-variant" data-group="${group}"><option value="">Select</option>${options.map(o=>`<option value="${o}">${o}</option>`).join('')}</select>`);
+    }
+  } else if(p.pricingMatrix){
+    const level1 = Object.keys(p.pricingMatrix);
+    const someL2 = p.pricingMatrix[level1[0]]||{};
+    const level2 = Object.keys(someL2);
+    const someL3 = someL2[level2[0]]||{};
+    const level3 = Object.keys(someL3);
+    const groups = [{label:'Type',opts:level1},{label:'Units',opts:level2},{label:'Size',opts:level3}];
+    for(const g of groups) if(g.opts?.length) parts.push(`<label>${nice(g.label)}</label><select class="gc-variant" data-group="${g.label}"><option value="">Select</option>${g.opts.map(o=>`<option value="${o}">${o}</option>`).join('')}</select>`);
+  }
+  return `<div class="pd-opts">${parts.join('')}</div>`;
+}
+
+function getPriceForSelection(p, sel){
+  if(p.pricing){
+    const order = Object.keys(p.variants||{});
+    const key = order.map(k=> sel[k]||'').join('|');
+    if(key in p.pricing) return Number(p.pricing[key]);
+  }
+  if(p.pricingMatrix){
+    const tryPaths = [['Type','Units','Size'],['Lids','Units','Size'],['Container Type','Units','Size'],['Units','Size']];
+    for(const path of tryPaths){
+      let node = p.pricingMatrix, ok = true;
+      for(const step of path){
+        const key = sel[step];
+        if(!key || !node || !(key in node)){ ok=false; break; }
+        node = node[key];
+      }
+      if(ok && (typeof node === 'number')) return Number(node);
+    }
+  }
+  const all = extractAllPrices(p);
+  return all.length ? Math.min(...all) : (p.price||0);
+}
+
+function trapFocus(container){
+  const FOCUSABLE = 'a,button,input,select,textarea,[tabindex]:not([tabindex="-1"])';
+  const nodes = [...container.querySelectorAll(FOCUSABLE)].filter(el=>!el.disabled && el.offsetParent!==null);
+  if(!nodes.length) return;
+  nodes[0].focus();
+  function onKey(e){
+    if(e.key!=='Tab') return;
+    const first = nodes[0], last = nodes[nodes.length-1];
+    if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+  }
+  container.__trapHandler = onKey;
+  container.addEventListener('keydown', onKey);
+}
+function untrapFocus(container){
+  if(container.__trapHandler){ container.removeEventListener('keydown', container.__trapHandler); container.__trapHandler = null; }
+}
+
+function openProductModal(p){
+  lastTrigger = document.activeElement;
+  const imgs = (p.images && p.images.length) ? p.images : [p.image];
+  const minPrice = getCardPrice(p);
+
+  // left gallery html
+  const left = `
+    <div class="pd-gallery">
+      <div class="pd-main" id="pdMain" style="background-image:url('${imgs[0]}')"></div>
+      <div class="pd-thumbs" id="pdThumbs">${imgs.map((s,i)=>`<img src="${s}" data-src="${s}" class="${i===0?'active':''}" alt="thumb ${i+1}">`).join('')}</div>
+    </div>`;
+
+  // right info
+  const right = `
+    <div class="pd-info" id="pdInfo">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="max-width:78%"><h3 style="margin:0;font-size:1.35rem;font-weight:900;color:var(--forest)">${p.title}</h3></div>
+      </div>
+      <div class="price">${formatMoney(minPrice)}</div>
+      <small class="vat">(inc VAT)</small>
+      ${buildVariantControls(p)}
+      <label>Quantity</label>
+      <div class="pd-qty-wrap">
+        <button class="qty-circle" id="qtyMinus">−</button>
+        <input type="number" id="pdQtyInput" class="qty-input" value="1" min="1">
+        <button class="qty-circle" id="qtyPlus">+</button>
+      </div>
+      <button class="pd-add" id="pdAddBtn">🛒 Add to Cart</button>
+      <div class="pd-actions-row">
+        <button class="btn-secondary" id="pdWishlist" style="flex:1">♡ Wishlist</button>
+        <button class="btn-secondary" id="pdShare" style="flex:1">Share</button>
+      </div>
+    </div>`;
+
+  // highlights grid using mapped fields
+  const highlightsList = [
+    {k:'Product', v:p.highlight_product || p.title},
+    {k:'Design', v:p.highlight_design || ''},
+    {k:'Material', v:p.highlight_material || ''},
+    {k:'Features', v:p.highlight_features || (Array.isArray(p.features)?p.features.join(', '):'')},
+    {k:'Use', v:p.highlight_use || ''},
+    {k:'Packaging', v:p.highlight_packaging || ''},
+    {k:'Delivery', v:p.highlight_delivery || ''},
+    {k:'Eco Benefit', v:p.highlight_ecobenefit || (p.eco? p.eco.join(', '): '')}
+  ];
+
+  const highlightsHtml = `
+    <div class="product-highlights">
+      <h4>Product Highlights</h4>
+      <div class="features-grid">
+        ${highlightsList.map(h => `<div class="feature-card"><div style="font-size:1.08rem">🌿</div><div><strong>${h.k}</strong><p>${h.v || ''}</p></div></div>`).join('')}
+      </div>
+    </div>`;
+
+  modalBody.innerHTML = `<div class="pd-head"><h3 id="pdTitle">${p.title}</h3></div>
+    <div class="pd-body">${left}${right}</div>${highlightsHtml}`;
+
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  trapFocus(modal);
+
+  // thumbs behavior
+  const main = modalBody.querySelector('#pdMain');
+  modalBody.querySelectorAll('.pd-thumbs img').forEach(imgEl=>{
+    imgEl.addEventListener('click', ()=>{
+      modalBody.querySelectorAll('.pd-thumbs img').forEach(x=>x.classList.remove('active'));
+      imgEl.classList.add('active');
+      main.style.backgroundImage = `url('${imgEl.dataset.src || imgEl.src}')`;
+    });
+  });
+
+  // zoom
+  main.addEventListener('mouseenter', ()=> main.classList.add('zoom'));
+  main.addEventListener('mouseleave', ()=> { main.classList.remove('zoom'); main.style.backgroundPosition = 'center'; });
+  main.addEventListener('mousemove', (e)=>{
+    if(!main.classList.contains('zoom')) return;
+    const r = main.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width) * 100;
+    const y = ((e.clientY - r.top)  / r.height) * 100;
+    main.style.backgroundPosition = `${x}% ${y}%`;
+  });
+
+  // qty
+  const qtyInput = document.getElementById('pdQtyInput');
+  document.getElementById('qtyMinus').addEventListener('click', ()=> qtyInput.value = Math.max(1, (parseInt(qtyInput.value,10)||1)-1));
+  document.getElementById('qtyPlus').addEventListener('click', ()=> qtyInput.value = (parseInt(qtyInput.value,10)||1)+1);
+
+  // preselect variants and price updates
+  const selects = modalBody.querySelectorAll('.gc-variant');
+  const selection = {};
+  selects.forEach(sel=>{
+    const first = sel.querySelector('option:nth-child(2)');
+    if(first){ first.selected = true; selection[sel.dataset.group] = first.value; }
+  });
+  const priceEl = modalBody.querySelector('.price');
+  if(priceEl) priceEl.textContent = formatMoney(getPriceForSelection(p, selection));
+  selects.forEach(sel=>{
+    sel.addEventListener('change', ()=>{
+      selection[sel.dataset.group] = sel.value;
+      if(priceEl) priceEl.textContent = formatMoney(getPriceForSelection(p, selection));
+    });
+  });
+
+  // add actions
+  document.getElementById('pdAddBtn').addEventListener('click', ()=>{
+    const q = Math.max(1, parseInt(qtyInput.value,10)||1);
+    incrementCart(q);
+    showToast(`${q} × ${p.title} added to cart`);
+  });
+
+}
+
+/* close modal handlers */
+function closeProductModal(){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  untrapFocus(modal);
+  document.body.style.overflow = '';
+  if(lastTrigger) lastTrigger.focus();
+}
+modal.addEventListener('click', e => { if(e.target.hasAttribute('data-close')) closeProductModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeProductModal(); });
+
+/* open from cards */
+grid.addEventListener('click', e => {
+
+  // MORE DETAILS → redirect to product page
+  const moreBtn = e.target.closest('.btn-more');
+  if (moreBtn) {
+    const id = Number(moreBtn.dataset.id);
+    const pageNumber = id - 200;   // 201 → product1.html
+    window.location.href = `./products/product${pageNumber}.html`;
+    return;
+  }
+
+  // ADD TO CART
+  const addBtn = e.target.closest('.btn-add');
+  if (addBtn) {
+    const id = Number(addBtn.dataset.id);
+    const p = products.find(x => x.id === id);
+    incrementCart(1);
+    showToast(`${p ? p.title : 'Item'} added to cart`);
+  }
+
+});
+
+
+/* cart, toast, offer, contact */
+function incrementCart(qty=1){
+  const badges = document.querySelectorAll('.header-icons .badge');
+  const cart = badges[1];
+  if(cart){ cart.textContent = String((parseInt(cart.textContent||'0',10)||0)+qty); }
+}
+function showToast(msg){
+  const t = document.getElementById('toast'); if(!t) return;
+  t.textContent = msg; t.style.display = 'block';
+  clearTimeout(window.__toastTimer); window.__toastTimer = setTimeout(()=> t.style.display='none', 1500);
+}
+(function(){ const el = document.getElementById('offerBanner'); const close = document.getElementById('closeOffer');
+  if(localStorage.getItem('yasree-offer-dismissed')==='1') el.style.display='none';
+  close && close.addEventListener('click', ()=>{ el.style.display='none'; localStorage.setItem('yasree-offer-dismissed','1'); });
+})();
+document.getElementById('openCallback')?.addEventListener('click', ()=> alert('Hi! How can we help?'));
+document.getElementById('contactForm')?.addEventListener('submit', function(e){ e.preventDefault(); const s = document.getElementById('formStatus'); if(s){ s.style.display='block'; s.textContent="✅ Thank you! We'll get back to you soon."; } e.target.reset(); });
+
+/* testimonials carousel */
+const testimonials = [
+  {quote:"Great quality and super-fast delivery. Switching to compostable cups boosted our brand image without raising costs.",name:"Ritika Mehra",title:"Ops Head, TiffinGo"},
+  {quote:"Love the recycled packaging and carbon-neutral shipping. Customers notice the difference.",name:"Ahmed Khan",title:"Owner, Spice Route"},
+  {quote:"Reliable supply for bulk orders and consistent product quality. Five stars.",name:"Divya Iyer",title:"Procurement, Café Leaf"},
+  {quote:"The eco filters made it easy to source plastic-free options for our festival. Support team was fantastic.",name:"Leo Fernandes",title:"Coordinator, GoGreen Fest"},
+  {quote:"Bulk prices are solid and delivery offsets fit our sustainability policy. We recommend Yasree to our franchises.",name:"Sneha Kapoor",title:"Supply Lead, HealthyBowl"},
+  {quote:"From compostable boxes to tote bags—everything arrived on time and the quality is premium.",name:"Marcus Hill",title:"Owner, Urban Deli"}
+];
+const slidesContainer = document.getElementById('carouselSlides');
+const controlsWrap = document.getElementById('carouselControls');
+function buildTestimonialSlides(){ slidesContainer.innerHTML=''; controlsWrap.innerHTML=''; testimonials.forEach((t,i)=>{ const slide=document.createElement('div'); slide.className='carousel-slide'; slide.innerHTML=`<div class="t-card"><p style="font-size:1rem;color:#163a2d;margin:0 0 .6rem">“${t.quote}”</p><div class="t-meta"><div class="t-avatar"></div><div><strong>${t.name}</strong><br><small>${t.title}</small></div></div></div>`; slidesContainer.appendChild(slide); const dot=document.createElement('button'); dot.className='c-dot'; dot.setAttribute('aria-label',`Slide ${i+1}`); dot.addEventListener('click',()=>goToSlide(i)); controlsWrap.appendChild(dot); }); }
+let currentSlide=0, slideTimer=null;
+function updateCarousel(){ slidesContainer.style.transform = `translateX(-${currentSlide*100}%)`; Array.from(controlsWrap.children).forEach((d,idx)=>d.classList.toggle('active', idx===currentSlide)); }
+function nextSlide(){ currentSlide = (currentSlide+1)%testimonials.length; updateCarousel(); }
+function goToSlide(idx){ currentSlide = idx%testimonials.length; updateCarousel(); resetTimer(); }
+function resetTimer(){ clearInterval(slideTimer); slideTimer = setInterval(nextSlide,4000); }
+buildTestimonialSlides(); updateCarousel(); resetTimer();
+const carouselWrap = document.getElementById('testiCarousel');
+carouselWrap.addEventListener('mouseenter', ()=> clearInterval(slideTimer));
+carouselWrap.addEventListener('mouseleave', ()=> resetTimer());
+
+/* small helper re-used above (for compatibility) */
+function formatMoney(n){ return `£${(Number(n)||0).toFixed(2)}`; }
+</script>
+</body>
+</html>

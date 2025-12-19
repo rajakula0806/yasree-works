@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>No.6A Aluminium Foil Containers (660ml) — Yasree Works</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --green:#0b5d29;
+  --gold:#c4be07;
+  --cream:#fcfaee;
+  --white:#fff;
+  --gray:#6b7280;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#fffef3,#fff8d6);
+  color:#1f2937;line-height:1.6;
+}
+
+/* PRODUCT BLOCK */
+.product-wrapper{
+  max-width:1300px;margin:3rem auto;display:flex;flex-wrap:wrap;
+  gap:2rem;background:#ffffffed;border-radius:22px;padding:2rem;
+}
+.product-images{flex:1 1 520px;}
+.main-img{height:460px;border-radius:16px;overflow:hidden;background:#fffbea;}
+.main-img img{width:100%;height:100%;object-fit:cover;}
+.thumbs{display:flex;gap:.5rem;margin-top:.8rem;justify-content:center;}
+.thumbs img{width:90px;height:90px;border-radius:10px;object-fit:cover;border:2px solid transparent;cursor:pointer;}
+.thumbs img.active{border-color:#facc15;transform:scale(1.05);}
+
+.product-info{flex:1 1 420px;}
+.product-info h1{font-size:2rem;color:var(--green);}
+.price{font-size:1.9rem;color:var(--green);font-weight:700;margin-bottom:.3rem;}
+small{color:var(--gray);}
+
+label{display:block;margin-top:1.1rem;font-weight:600;color:var(--green);}
+select,input[type="number"]{
+  width:100%;padding:.9rem;border-radius:12px;border:1px solid #e0e0e0;
+  background:var(--cream);font-size:.95rem;
+}
+select:hover,input:hover{border-color:#d6cc7a;}
+select:focus,input:focus{border-color:var(--gold);outline:none;}
+
+.qty-wrap{display:flex;gap:.4rem;margin-top:.4rem;}
+.qty-btn{
+  width:42px;height:42px;border-radius:10px;border:none;background:#efe8b7;
+  font-weight:700;font-size:1.2rem;color:#2c3e13;cursor:pointer;
+}
+.qty-btn:hover{background:#e8e199;}
+.qty-input{text-align:center;font-size:1rem;}
+
+.add-btn{
+  background:linear-gradient(90deg,var(--green),var(--gold));
+  border:none;border-radius:14px;padding:1rem;margin-top:1.3rem;width:100%;
+  font-size:1rem;font-weight:700;color:#fff;
+}
+.add-btn:hover{opacity:.85;transform:translateY(-2px);}
+
+/* PRODUCT DESCRIPTION */
+.highlights{
+  max-width:1200px;margin:3rem auto;background:#fff8d6;padding:2rem;border-radius:18px;
+}
+.highlights h2{text-align:center;color:var(--green);margin-bottom:1rem;font-size:1.7rem;}
+.features{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;
+}
+.feature{background:#fff;border-radius:12px;padding:1rem;border-left:4px solid #facc15;}
+
+/* ABOUT */
+.about{
+  max-width:1200px;margin:3rem auto;background:#fffdf3;padding:2rem;border-radius:18px;text-align:center;
+}
+.about h2{color:var(--green);margin-bottom:1rem;}
+.about p{max-width:850px;margin:auto;margin-bottom:1.5rem;}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;}
+.about-card{background:#fff;border-radius:12px;padding:1rem;border:1px solid #ece6b2;}
+.about-card h3{color:#e0c500;margin-bottom:.4rem;}
+
+/* CONTACT */
+.contact{
+  max-width:1200px;margin:3rem auto;background:#fff8d6;padding:2rem;border-radius:18px;text-align:center;
+}
+.contact h2{color:var(--green);margin-bottom:1rem;}
+.contact-container-two{
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1rem;
+}
+@media(max-width:800px){.contact-container-two{grid-template-columns:1fr;}}
+.left-contact{display:flex;flex-direction:column;gap:1rem;}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+}
+.tile{
+  background:#fff;border:1px solid #f1e59b;border-radius:12px;padding:1rem;text-align:left;
+}
+.tile h4{color:#e0c500;margin-bottom:.2rem;font-size:1rem;}
+.map{width:100%;height:260px;border-radius:12px;border:1px solid #e8e3ba;}
+
+.contact-form-box{
+  background:#ffffff;border-radius:12px;padding:1.2rem;display:flex;flex-direction:column;gap:.9rem;
+  box-shadow:0 3px 8px rgba(0,0,0,.05);
+}
+.contact-form-box input,.contact-form-box textarea{
+  width:100%;padding:.8rem;border-radius:10px;border:1px solid #dedede;background:#fdfbf0;font-size:.95rem;
+}
+.contact-form-box input:focus,.contact-form-box textarea:focus{border-color:var(--gold);outline:none;}
+.sendBtn{
+  background:linear-gradient(90deg,var(--green),var(--gold));
+  padding:.9rem;border:none;border-radius:12px;color:#fff;font-size:.95rem;font-weight:700;cursor:pointer;
+}
+.sendBtn:hover{opacity:.85;}
+
+footer.clean-footer{
+  background:#ffffff;
+  color:#1b5e20;
+  padding:1.2rem;
+  text-align:center;
+  font-weight:600;
+  border-top:1px solid #e6e6e6;
+  box-shadow:none;
+}
+
+
+.toast{
+  position:fixed;left:50%;bottom:20px;transform:translateX(-50%);
+  background:linear-gradient(90deg,#1b5e20,#d5c600);padding:.7rem 1.2rem;border-radius:999px;
+  color:#fff;display:none;
+}
+.back-btn{
+  background:linear-gradient(90deg,#1b5e20,#c4be07);
+  color:white;
+  padding:.7rem 1.2rem;
+  border:none;
+  font-weight:700;
+  border-radius:12px;
+  cursor:pointer;
+  margin:1rem;
+}
+.back-btn:hover{
+  opacity:.85;
+  transform:translateY(-2px);
+}
+
+
+</style>
+</head>
+<body>
+<button id="backBtn" class="back-btn">← Back</button>
+<section class="product-wrapper">
+  <div class="product-images">
+    <div class="main-img" id="mainImgWrap"></div>
+    <div class="thumbs" id="thumbs"></div>
+  </div>
+
+  <div class="product-info">
+    <h1 id="prodTitle"></h1>
+    <div class="price" id="prodPrice"></div>
+    <small>(exc VAT)</small>
+
+    <label>Size / Capacity</label>
+    <select><option>No.6A / 660ml</option></select>
+
+    <label>Units (Pack)</label>
+    <select><option>Pack of 500pcs</option></select>
+
+    <label>Quantity</label>
+    <div class="qty-wrap">
+      <button class="qty-btn" id="minus">−</button>
+      <input type="number" class="qty-input" id="qty" value="1" min="1">
+      <button class="qty-btn" id="plus">+</button>
+    </div>
+
+    <button class="add-btn" id="addCart">🛒 Add to Cart</button>
+  </div>
+</section>
+
+<section class="highlights">
+  <h2>Product Description</h2>
+  <div class="features">
+    <div class="feature"><strong>Product:</strong> No.6A Aluminium Food Containers (500 pack)</div>
+    <div class="feature"><strong>Design:</strong> Deep foil container for hearty portions</div>
+    <div class="feature"><strong>Material:</strong> Food-grade recyclable aluminium foil</div>
+    <div class="feature"><strong>Features:</strong> Oven-safe, sturdy walls</div>
+    <div class="feature"><strong>Best For:</strong> Curries, pasta and rice dishes</div>
+    <div class="feature"><strong>Use:</strong> Designed for takeaways, restaurants, and catering</div>
+    <div class="feature"><strong>Packaging:</strong> Pack of 500 containers</div>
+    <div class="feature"><strong>Delivery:</strong> Reliable UK-wide delivery</div>
+    <div class="feature"><strong>Eco Benefit:</strong> Widely recyclable vs plastic trays</div>
+  </div>
+</section>
+
+<section class="about">
+  <h2>About Us</h2>
+  <p>Yasree Works & Trades Ltd — premium eco-friendly food packaging supplier in the UK.</p>
+  <div class="about-grid">
+    <div class="about-card"><h3>Origin</h3><p>Made in the UK</p></div>
+    <div class="about-card"><h3>Focus</h3><p>Quality & sustainability</p></div>
+    <div class="about-card"><h3>Values</h3><p>Service • Trust • Reliability</p></div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Contact Us</h2>
+  <div class="contact-container-two">
+    <div class="left-contact">
+      <div class="contact-grid">
+        <div class="tile"><h4>Hours</h4><p>Mon–Fri: 9–18<br>Sat: 10–16</p></div>
+        <div class="tile"><h4>Address</h4><p>Unit 26, The Maltings,<br>Essex, UK</p></div>
+        <div class="tile"><h4>Email</h4><p><a href="mailto:support@yasreeworks.co.uk">support@yasreeworks.co.uk</a></p></div>
+        <div class="tile"><h4>Phone</h4><p><a href="tel:+441234567890">+44 1234 567890</a></p></div>
+      </div>
+
+      <iframe class="map"
+        src="https://www.google.com/maps?q=The+Maltings+Industrial+Estate,+Essex,+UK&output=embed"
+        loading="lazy"></iframe>
+    </div>
+
+    <form class="contact-form-box" id="contactForm">
+      <input type="text" name="name" placeholder="Your Name *" required>
+      <input type="email" name="email" placeholder="Your Email *" required>
+      <input type="text" name="subject" placeholder="Subject *" required>
+      <textarea name="message" rows="4" placeholder="Message *" required></textarea>
+      <button type="submit" class="sendBtn">Send Message</button>
+      <p id="formStatus"></p>
+    </form>
+  </div>
+</section>
+
+<footer class="clean-footer">
+  © 2025 Yasree Works and Trades Limited — All Rights Reserved.<br>
+  Designed & Developed by <strong>Raj Crafts ❤️</strong>
+</footer>
+
+
+<div id="toast" class="toast">Added to cart</div>
+
+<script>
+const prodImages = [
+  "../images/No-6a-Aluminium-Foil-Food-Containers-500.jpg",
+  "../images/No-6a-Aluminium-Foil-Food-Containers-500.jpg",
+  "../images/No-6a-Aluminium-Foil-Food-Containers-500.jpg"
+];
+const main=document.getElementById('mainImgWrap');
+const thumbs=document.getElementById('thumbs');
+main.innerHTML=`<img src="${prodImages[0]}">`;
+prodImages.forEach((img,i)=>{
+  const t=document.createElement('img');
+  t.src=img;
+  if(i===0)t.classList.add('active');
+  t.onclick=()=>{
+    document.querySelectorAll('.thumbs img').forEach(el=>el.classList.remove('active'));
+    t.classList.add('active');
+    main.innerHTML=`<img src="${img}">`;
+  }
+  thumbs.appendChild(t);
+});
+
+document.getElementById('prodTitle').textContent="No.6A Aluminium Foil Food Containers — 660ml — Pack of 500";
+document.getElementById('prodPrice').textContent="£26.90";
+
+const qty=document.getElementById('qty');
+document.getElementById('minus').onclick=()=>qty.value=Math.max(1,+qty.value-1);
+document.getElementById('plus').onclick=()=>qty.value=+qty.value+1;
+
+const toast=document.getElementById('toast');
+function showToast(msg){
+  toast.textContent=msg;
+  toast.style.display='block';
+  setTimeout(()=>toast.style.display='none',1500);
+}
+document.getElementById('addCart').onclick=()=>showToast(`Added ${qty.value} × Container Pack`);
+
+document.getElementById('contactForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  document.getElementById('formStatus').textContent="Message sent ✓";
+  e.target.reset();
+});
+document.getElementById("backBtn").onclick = function(){
+    history.back(); 
+}
+</script>
+</body>
+</html>

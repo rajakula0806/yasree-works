@@ -18,14 +18,16 @@ function updateCartCount() {
     badge.textContent = count;
 
     // OPTIONAL: show total quantity on hover
-    badge.title = `${cart.reduce((s, i) => s + i.qty, 0)} items total`;
+    badge.title = cart.length
+  ? `${cart.reduce((s, i) => s + i.qty, 0)} items total`
+  : "";
   }
 }
 
 
 
 function addToCart(item, qty = 1){
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getCart();
 
   const existing = cart.find(p => p.id == item.id);
 
@@ -76,6 +78,17 @@ function syncHeaderCounts(){
 // 🔁 Sync header counts across pages & tabs
 window.addEventListener("storage", (e) => {
   if (e.key === "cart" || e.key === "wishlist") {
+    syncHeaderCounts();
+  }
+});
+
+// 🔄 Re-sync counts when page is revisited (bfcache fix)
+window.addEventListener("pageshow", () => {
+  syncHeaderCounts();
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
     syncHeaderCounts();
   }
 });

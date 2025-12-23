@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your Cart – Yasree Works</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =======================
+   THEME VARIABLES
+======================= */
+:root{
+  --forest:#0b5d29;
+  --gold:#facc15;
+  --bg:linear-gradient(135deg,#fffef3,#fff8d6);
+  --card:#ffffff;
+  --gray:#6b7280;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+/* =======================
+   BASE
+======================= */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:#1f2937;
+}
+
+/* =======================
+   LAYOUT
+======================= */
+.container{
+  max-width:1200px;
+  margin:2rem auto;
+  padding:0 1rem;
+}
+
+h1{
+  color:var(--forest);
+  margin-bottom:1.5rem;
+}
+
+.cart-layout{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:2rem;
+}
+
+@media(max-width:900px){
+  .cart-layout{grid-template-columns:1fr}
+}
+
+/* =======================
+   CART ITEMS
+======================= */
+.cart-top-actions{
+  margin:1rem 0 2rem;
+}
+
+.continue-btn{
+  background:linear-gradient(90deg,#1b5e20,#c4be07);
+  color:white;
+  padding:.7rem 1.4rem;
+  border:none;
+  border-radius:999px;
+  font-weight:700;
+  cursor:pointer;
+}
+.continue-btn:hover{
+  opacity:.85;
+}
+
+.cart-item{
+  display:flex;
+  gap:1rem;
+  background:var(--card);
+  border-radius:14px;
+  padding:1rem;
+  margin-bottom:1rem;
+  box-shadow:var(--shadow);
+  align-items:center;
+}
+
+.cart-item img{
+  width:120px;
+  height:120px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.cart-info{flex:1}
+
+.cart-info h3{
+  margin:0;
+  font-size:1rem;
+  font-weight:700;
+}
+
+.cart-info p{
+  margin:.25rem 0;
+  color:var(--forest);
+  font-weight:700;
+}
+
+/* Quantity */
+.qty-controls{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  margin-top:.4rem;
+}
+
+.qty-controls button{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  border:1px solid #e5e7eb;
+  background:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.qty-controls span{
+  min-width:24px;
+  text-align:center;
+  font-weight:700;
+}
+
+/* Remove */
+.remove-btn{
+  background:#fee2e2;
+  color:#b91c1c;
+  border:none;
+  padding:.45rem .8rem;
+  border-radius:999px;
+  font-weight:700;
+  cursor:pointer;
+  margin-top:.5rem;
+}
+
+/* =======================
+   SUMMARY
+======================= */
+.summary{
+  background:var(--card);
+  border-radius:16px;
+  padding:1.4rem;
+  box-shadow:var(--shadow);
+  height:fit-content;
+}
+
+.summary h2{
+  margin-top:0;
+  color:var(--forest);
+}
+
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  margin:.6rem 0;
+  font-weight:600;
+}
+
+.summary-total{
+  font-size:1.3rem;
+  font-weight:800;
+  color:var(--forest);
+}
+
+/* Checkout */
+.checkout-btn{
+  width:100%;
+  margin-top:1rem;
+  padding:.9rem;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--forest),var(--gold));
+  color:#fff;
+  font-weight:800;
+  font-size:1rem;
+  cursor:pointer;
+  box-shadow:0 12px 26px rgba(0,0,0,.15);
+}
+
+/* =======================
+   EMPTY CART
+======================= */
+.empty{
+  text-align:center;
+  padding:3rem;
+  background:var(--card);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+}
+
+/* =======================
+   BACK BUTTON (STYLISH)
+======================= */
+.back-wrap{
+  max-width:1200px;
+  margin:1rem auto 2rem;
+  padding:0 1rem;
+}
+
+.cart-back-btn{
+  background:linear-gradient(90deg,var(--forest),var(--gold));
+  color:#fff;
+  border:none;
+  border-radius:999px;
+  padding:.65rem 1.6rem;
+  font-weight:800;
+  font-size:.95rem;
+  cursor:pointer;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+  transition:.25s ease;
+}
+
+.cart-back-btn:hover{
+  transform:translateY(-2px);
+  opacity:.95;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>🛒 Your Cart</h1>
+  <div class="cart-top-actions">
+  <button onclick="history.back()" class="continue-btn">
+    ← Continue Shopping
+  </button>
+  </div>
+
+  <div class="cart-layout">
+    <div id="cartItems"></div>
+
+    <div class="summary">
+      <h2>Order Summary</h2>
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span>£<span id="cartTotal">0.00</span></span>
+      </div>
+      <div class="summary-row summary-total">
+        <span>Total</span>
+        <span>£<span id="cartTotalFinal">0.00</span></span>
+      </div>
+      <button class="checkout-btn" onclick="goCheckout()">Proceed to Checkout</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="js/cart.js"></script>
+<script>
+const container=document.getElementById("cartItems");
+const totalEl=document.getElementById("cartTotal");
+const totalFinalEl=document.getElementById("cartTotalFinal");
+
+function renderCart(){
+  const cart=getCart();
+  container.innerHTML="";
+  let total=0;
+
+  if(cart.length===0){
+    container.innerHTML=`
+      <div class="empty">
+        <h2>Your cart is empty</h2>
+        <p>Start adding eco-friendly products 🌿</p>
+      </div>`;
+    totalEl.textContent="0.00";
+    totalFinalEl.textContent="0.00";
+    return;
+  }
+
+  cart.forEach(item=>{
+    const sub=item.price*item.qty;
+    total+=sub;
+
+    container.innerHTML+=`
+      <div class="cart-item">
+        <img src="${item.image}" alt="${item.name}">
+        <div class="cart-info">
+          <h3>${item.name}</h3>
+          <p>£${item.price.toFixed(2)}</p>
+          <div class="qty-controls">
+            <button onclick="changeQty(${item.id},-1);renderCart()">−</button>
+            <span>${item.qty}</span>
+            <button onclick="changeQty(${item.id},1);renderCart()">+</button>
+          </div>
+          <button class="remove-btn" onclick="removeFromCart(${item.id});renderCart()">Remove</button>
+        </div>
+        <strong>£${sub.toFixed(2)}</strong>
+      </div>`;
+  });
+
+  totalEl.textContent=total.toFixed(2);
+  totalFinalEl.textContent=total.toFixed(2);
+}
+
+function goCheckout(){
+  location.href="checkout.html";
+}
+
+renderCart();
+updateCartCount();
+</script>
+
+</body>
+</html>

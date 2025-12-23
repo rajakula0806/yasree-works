@@ -172,23 +172,47 @@ footer span{color:#fff5b5}
 
 /* responsiveness */
 @media(max-width:900px){.search-bar{order:3;width:100%;margin-top:.5rem}.header-icons{order:2}.header-top{gap:.35rem}.carousel-slide .t-card{padding:.9rem}}
+.icon-btn{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  cursor:pointer;
+}
+.icon-btn .badge{
+  background:#fff;
+  color:var(--forest);
+  border-radius:999px;
+  padding:2px 8px;
+  font-size:.75rem;
+  font-weight:700;
+  margin-left:6px;
+}
 </style>
 </head>
 <body>
-
-
-<header class="site-header">
+  <header class="site-header">
   <div class="header-top">
-    <div class="logo">Yasree<span>Works</span></div>
+
+    <div class="logo">
+      Yasree<span>Works</span>
+    </div>
+
     <div class="search-bar">
       <input id="search" placeholder="Search eco products..." />
       <button id="searchBtn" class="search-btn">Search</button>
     </div>
+
     <div class="header-icons">
-      <div class="icon-btn">♡ Wishlist <span class="badge">0</span></div>
-      <div class="icon-btn">🛒 Cart <span class="badge">0</span></div>
+      <a href="wishlist.html" class="icon-btn">
+      ♡ Wishlist <span class="badge" id="wishlistCount">0</span>
+      </a>
+      <a href="cart.html" class="icon-btn">
+    🛒 Cart <span class="badge" id="cartCount">0</span>
+      </a>
     </div>
+
   </div>
+</header>
 
   <nav class="nav-mega">
     <div class="container">
@@ -309,6 +333,9 @@ footer span{color:#fff5b5}
 
 <div id="toast" class="toast" aria-live="polite">Added</div>
 <button class="fab" id="openCallback">💬 Chat</button>
+
+<script src="js/cart.js"></script>
+<script src="js/wishlist.js"></script>
 
 <script>
 
@@ -1068,12 +1095,30 @@ function openProductModal(p){
   });
 
   // add actions
-  document.getElementById('pdAddBtn').addEventListener('click', ()=>{
-    const q = Math.max(1, parseInt(qtyInput.value,10)||1);
-    incrementCart(q);
-    showToast(`${q} × ${p.title} added to cart`);
-  });
+  // ADD TO CART
+document.getElementById('pdAddBtn').addEventListener('click', ()=>{
+  const q = Math.max(1, parseInt(qtyInput.value,10)||1);
 
+  addToCart({
+    id: p.id,
+    name: p.title,
+    price: getPriceForSelection(p, selection),
+    image: p.image
+  }, q);
+
+  showToast(`${q} × ${p.title} added to cart`);
+});
+
+// ❤️ ADD TO WISHLIST (PUT THIS RIGHT HERE)
+document.getElementById('pdWishlist')?.addEventListener('click', ()=>{
+  addToWishlist({
+    id: p.id,
+    name: p.title,
+    price: getPriceForSelection(p, selection),
+    image: p.image
+  });
+  showToast("Added to wishlist");
+});
 }
 
 /* close modal handlers */
@@ -1102,21 +1147,22 @@ grid.addEventListener('click', e => {
   // ADD TO CART
   const addBtn = e.target.closest('.btn-add');
   if (addBtn) {
-    const id = Number(addBtn.dataset.id);
-    const p = products.find(x => x.id === id);
-    incrementCart(1);
-    showToast(`${p ? p.title : 'Item'} added to cart`);
-  }
+  const id = Number(addBtn.dataset.id);
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+
+  addToCart({
+    id: p.id,
+    name: p.title,
+    price: getCardPrice(p),
+    image: p.image
+  }, 1);
+
+  showToast(`${p.title} added to cart`);
+}
 
 });
-
-
 /* cart, toast, offer, contact */
-function incrementCart(qty=1){
-  const badges = document.querySelectorAll('.header-icons .badge');
-  const cart = badges[1];
-  if(cart){ cart.textContent = String((parseInt(cart.textContent||'0',10)||0)+qty); }
-}
 function showToast(msg){
   const t = document.getElementById('toast'); if(!t) return;
   t.textContent = msg; t.style.display = 'block';
@@ -1153,6 +1199,9 @@ carouselWrap.addEventListener('mouseleave', ()=> resetTimer());
 
 /* small helper re-used above (for compatibility) */
 function formatMoney(n){ return `£${(Number(n)||0).toFixed(2)}`; }
+</script>
+<script>
+  updateCartCount();
 </script>
 </body>
 </html>

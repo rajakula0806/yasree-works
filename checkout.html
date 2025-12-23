@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Checkout – Yasree Works</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+  font-family:Poppins,sans-serif;
+  background:linear-gradient(135deg,#fffef3,#fff8d6);
+  margin:0;
+}
+.container{
+  max-width:900px;
+  margin:2rem auto;
+  padding:1rem;
+}
+.card{
+  background:#fff;
+  padding:1.5rem;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+h1{color:#1b5e20}
+.row{
+  display:flex;
+  justify-content:space-between;
+  margin:.5rem 0;
+  font-weight:600;
+}
+.total{
+  font-size:1.4rem;
+  font-weight:800;
+}
+input{
+  width:100%;
+  padding:.7rem;
+  margin:.4rem 0;
+  border-radius:8px;
+  border:1px solid #ddd;
+}
+button{
+  width:100%;
+  margin-top:1rem;
+  padding:.9rem;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(90deg,#1b5e20,#facc15);
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Checkout</h1>
+
+  <div class="card">
+    <h3>Delivery Details</h3>
+    <input placeholder="Full Name" required>
+    <input placeholder="Phone Number" required>
+    <input placeholder="Delivery Address" required>
+
+    <h3 style="margin-top:1rem">Order Summary</h3>
+    <div id="summary"></div>
+    <div class="row total">
+      <span>Total</span>
+      <span>£<span id="finalTotal">0.00</span></span>
+    </div>
+
+    <button onclick="placeOrder()">Place Order</button>
+  </div>
+</div>
+
+<script src="js/cart.js"></script>
+<script>
+const cart = getCart();
+let total = 0;
+const summary = document.getElementById("summary");
+
+cart.forEach(item=>{
+  const sub = item.price * item.qty;
+  total += sub;
+  summary.innerHTML += `
+    <div class="row">
+      <span>${item.name} × ${item.qty}</span>
+      <span>£${sub.toFixed(2)}</span>
+    </div>`;
+});
+
+document.getElementById("finalTotal").textContent = total.toFixed(2);
+
+function placeOrder(){
+  alert("Order placed successfully! Our team will contact you.");
+  localStorage.removeItem("cart");
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

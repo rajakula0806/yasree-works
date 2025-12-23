@@ -1,0 +1,124 @@
+/* ✅ VARIABLES — MUST BE FIRST */
+:root{
+  --forest:#0b5d29;
+  --gold:#facc15;
+}
+
+/* Stylish Back Button */
+.cart-back-btn{
+  background:linear-gradient(90deg,var(--forest),var(--gold));
+  color:#fff;
+  border:none;
+  border-radius:999px;
+  padding:.65rem 1.4rem;
+  font-weight:800;
+  font-size:.95rem;
+  cursor:pointer;
+  box-shadow:0 10px 24px rgba(0,0,0,.15);
+  transition:all .25s ease;
+}
+
+.cart-back-btn:hover{
+  opacity:.9;
+  transform:translateY(-2px);
+}
+.cart-top-actions{
+  margin:1rem 0 2rem;
+}
+
+.continue-btn{
+  background:linear-gradient(90deg,#1b5e20,#c4be07);
+  color:white;
+  padding:.7rem 1.4rem;
+  border:none;
+  border-radius:999px;
+  font-weight:700;
+  cursor:pointer;
+}
+.continue-btn:hover{
+  opacity:.85;
+}
+
+
+/* Base */
+body {
+  font-family: Poppins, Arial, sans-serif;
+  margin: 0;
+  background: #f5f5f5;
+}
+
+/* Navbar */
+.navbar {
+  background: #0b5d29;
+  color: #fff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cart-badge {
+  background: gold;
+  color: black;
+  padding: 3px 8px;
+  border-radius: 50%;
+}
+
+/* Layout */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px;
+}
+
+/* Buttons */
+button {
+  background: #0b5d29;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Product buttons */
+.btn-add{
+  background:linear-gradient(90deg,var(--forest),var(--gold));
+  color:#fff;
+  border:0;
+  border-radius:999px;
+  font-weight:800;
+  padding:.6rem 1.2rem;
+  cursor:pointer;
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+}
+
+.btn-secondary{
+  background:linear-gradient(90deg,#ffffff,#f8f3d6);
+  border:2px solid var(--gold);
+  color:var(--forest);
+  border-radius:999px;
+  font-weight:800;
+  padding:.6rem 1.4rem;
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  transition:all .25s ease;
+}
+
+.btn-secondary:hover{
+  background:linear-gradient(90deg,var(--gold),#ffe58a);
+  color:#0b5d29;
+  transform:translateY(-2px);
+}
+
+
+.product-actions{
+  margin-top:1rem;
+  display:flex;
+  gap:.6rem;
+}

@@ -8,6 +8,52 @@
 
 <style>
 :root{
+  --forest:#0b5d29;
+  --gold:#facc15;
+}
+
+.product-actions{
+  margin-top:1rem;
+  display:flex;
+  gap:.8rem;
+}
+
+.btn-add{
+  background:linear-gradient(90deg,var(--forest),var(--gold));
+  color:#fff;
+  border:0;
+  border-radius:999px;
+  font-weight:800;
+  padding:.65rem 1.4rem;
+  cursor:pointer;
+  box-shadow:0 10px 24px rgba(0,0,0,.15);
+}
+
+.btn-secondary{
+  background:linear-gradient(90deg,#ffffff,#f8f3d6);
+  border:2px solid var(--gold);
+  color:var(--forest);
+  border-radius:999px;
+  font-weight:800;
+  padding:.6rem 1.4rem;
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  transition:all .25s ease;
+}
+
+.btn-secondary:hover{
+  background:linear-gradient(90deg,var(--gold),#ffe58a);
+  color:#0b5d29;
+  transform:translateY(-2px);
+}
+.btn-add:hover{
+  opacity:.85;
+  transform:translateY(-2px);
+}
+</style>
+
+<style>
+:root{
   --green:#0b5d29;
   --gold:#c4be07;
   --cream:#fcfaee;
@@ -173,8 +219,10 @@ footer.clean-footer{
       <input type="number" class="qty-input" id="qty" value="1" min="1">
       <button class="qty-btn" id="plus">+</button>
     </div>
-
-    <button class="add-btn" id="addCart">🛒 Add to Cart</button>
+    <div class="product-actions">
+      <button id="btnAddCart" class="btn-add">🛒 Add to Cart</button>
+      <button id="btnAddWish" class="btn-secondary">♡ Add to Wishlist</button>
+    </div>
   </div>
 </section>
 
@@ -272,7 +320,7 @@ function showToast(msg){
   toast.style.display='block';
   setTimeout(()=>toast.style.display='none',1500);
 }
-document.getElementById('addCart').onclick=()=>showToast(`Added ${qty.value} × Container Pack`);
+document.getElementById('btnAddCart').onclick=()=>showToast(`Added ${qty.value} × Container Pack`);
 
 document.getElementById('contactForm').addEventListener('submit',e=>{
   e.preventDefault();
@@ -283,5 +331,21 @@ document.getElementById("backBtn").onclick = function(){
     history.back(); 
 }
 </script>
+<!-- JS files -->
+<script src="../js/cart.js"></script>
+<script src="../js/wishlist.js"></script>
+<script src="../js/product-page.js"></script>
+
+<!-- Page-specific product data -->
+<script>
+setupProductPage({
+  id: 209,
+  name: "No 9 Aluminium Foil Food Containers (200)",
+  price: 30.90,
+  image: "images/No-9-Aluminium-Foil-Food-Containers-200.jpg"
+});
+</script>
+
 </body>
 </html>
+

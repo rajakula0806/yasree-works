@@ -258,6 +258,10 @@ h1{
 
 <script src="js/cart.js"></script>
 <script>
+  document.addEventListener("DOMContentLoaded", syncHeaderCounts);
+</script>
+
+<script>
 const container=document.getElementById("cartItems");
 const totalEl=document.getElementById("cartTotal");
 const totalFinalEl=document.getElementById("cartTotalFinal");

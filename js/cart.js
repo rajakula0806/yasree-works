@@ -9,10 +9,20 @@ function saveCart(cart) {
 
 function updateCartCount() {
   const cart = getCart();
-  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+
+  // Number of distinct products
+  const count = cart.length;
+
   const badge = document.getElementById("cartCount");
-  if (badge) badge.textContent = count;
+  if (badge) {
+    badge.textContent = count;
+
+    // OPTIONAL: show total quantity on hover
+    badge.title = `${cart.reduce((s, i) => s + i.qty, 0)} items total`;
+  }
 }
+
+
 
 function addToCart(item, qty = 1){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -54,3 +64,12 @@ function changeQty(id, delta) {
 
   saveCart(cart);
 }
+function syncHeaderCounts(){
+  if (typeof updateCartCount === "function") {
+    updateCartCount();
+  }
+  if (typeof updateWishlistCount === "function") {
+    updateWishlistCount();
+  }
+}
+

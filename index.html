@@ -1201,6 +1201,9 @@ carouselWrap.addEventListener('mouseleave', ()=> resetTimer());
 function formatMoney(n){ return `£${(Number(n)||0).toFixed(2)}`; }
 </script>
 <script>
+  document.addEventListener("DOMContentLoaded", syncHeaderCounts);
+</script>
+<script>
   updateCartCount();
 </script>
 </body>

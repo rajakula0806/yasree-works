@@ -73,3 +73,10 @@ function syncHeaderCounts(){
   }
 }
 
+// 🔁 Sync header counts across pages & tabs
+window.addEventListener("storage", (e) => {
+  if (e.key === "cart" || e.key === "wishlist") {
+    syncHeaderCounts();
+  }
+});
+

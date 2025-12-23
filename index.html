@@ -334,9 +334,6 @@ footer span{color:#fff5b5}
 <div id="toast" class="toast" aria-live="polite">Added</div>
 <button class="fab" id="openCallback">💬 Chat</button>
 
-<script src="js/cart.js"></script>
-<script src="js/wishlist.js"></script>
-
 <script>
 
 const products = [
@@ -1200,11 +1197,10 @@ carouselWrap.addEventListener('mouseleave', ()=> resetTimer());
 /* small helper re-used above (for compatibility) */
 function formatMoney(n){ return `£${(Number(n)||0).toFixed(2)}`; }
 </script>
+<script src="js/cart.js"></script>
+<script src="js/wishlist.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", syncHeaderCounts);
-</script>
-<script>
-  updateCartCount();
 </script>
 </body>
 </html>
